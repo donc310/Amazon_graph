@@ -4,7 +4,7 @@ const webpack = require('webpack');
 module.exports = {
   entry: ['babel-polyfill', './src/main.js'],
   output: {
-    path: path.resolve(__dirname, 'dist/js'),
+    path: path.resolve(__dirname, 'public/js'),
     filename: 'widget.js',
   },
   resolve: {
