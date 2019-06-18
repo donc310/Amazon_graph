@@ -1,21 +1,4 @@
-export function widgetVersion() {
-    let date = new Date();
-    let months = [
-        "January",
-        "February",
-        "March",
-        "April",
-        "May",
-        "June",
-        "July",
-        "August",
-        "September",
-        "October",
-        "November",
-        "December"
-    ];
-    return `${months[date.getMonth()]} , ${date.getFullYear()}`;
-}
+
 export function getEntryDateString() {
     var currentDate = new Date();
     var timestamp = currentDate.getTime();
@@ -62,4 +45,14 @@ export function IsEqual(value, other) {
         }
     }
     return true;
+}
+export function formatDescription(description) {
+    return description
+        .map(data => {
+            return data.content;
+        }, 0)
+        .toString();
+}
+export function formateNumber(value) {
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }

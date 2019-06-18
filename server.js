@@ -9,6 +9,11 @@ app.get('/', (req, res) => {
         root: path.join(__dirname, './')
     })
 })
+app.get('/data', (req, res) => {
+    res.sendFile('data.json', {
+        root: path.join(__dirname, './')
+    })
+})
 app.get('/index.html', (req, res) => {
     res.sendFile('index.html', {
         root: path.join(__dirname, './')
