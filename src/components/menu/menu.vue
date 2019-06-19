@@ -10,7 +10,7 @@
             </a>
           </div>
           <div class="content">
-            <p>Amazon graph is a visual recommendation service that helps people find the right product from Amazon's catalog; be it a book, a movie or a video game - Yasiv finds everything!</p>
+            <p>Amazon graph is a visual recommendation service that helps people find the right product from Amazon's catalog; be it a book, a movie or a video game -Amazon graph finds everything!</p>
             <p>A link between the two products means that they are often bought together. By simply observing the network of products one can guess at what is popular and what isn’t.</p>
           </div>
         </div>
