@@ -4,8 +4,6 @@
   "description": "data visualization widget built with vue.js",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "npm run build",
     "build": "cross-env NODE_ENV=production webpack",
     "start": " npm run build && nodemon server.js"
   },
