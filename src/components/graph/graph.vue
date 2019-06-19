@@ -2,7 +2,7 @@
   <div>
     <div class="graph-container"></div>
     <div>
-      <graphsearch></graphsearch>
+      <graphsearch @showMenu="evt=>showMenu=evt" @categoryChange="evt=>searchCategory=evt"></graphsearch>
       <graphoverview
         :products="products"
         v-if="showOverview"
@@ -23,7 +23,11 @@
         :left="hover.left"
         :top="hover.top"
       ></hover>
-
+      <graphmenu
+        :showmenu="showMenu"
+        @closeMenu="event=>showMenu=false"
+        @countryChange="evt=>searchCountry=evt"
+      ></graphmenu>
     </div>
   </div>
 </template>
@@ -34,13 +38,15 @@ import GraphOview from "./graph_overview";
 import GraphDrawer from "./graph_drawer";
 import GraphDetail from "./graph_detail";
 import GraphSearch from "./graph_search";
+import GraphMenu from "../menu/menu";
 export default {
   components: {
     hover: HoverComponent,
     graphoverview: GraphOview,
     graphdrawer: GraphDrawer,
     graphdetail: GraphDetail,
-    graphsearch: GraphSearch
+    graphsearch: GraphSearch,
+    graphmenu: GraphMenu
   },
   props: {},
   data() {
@@ -51,6 +57,9 @@ export default {
       showDrawer: false,
       showOverview: false,
       showDetails: false,
+      showMenu: false,
+      searchCountry: "US",
+      searchCategory: "All",
       selectedProduct: {},
       hover: {
         showHover: false,

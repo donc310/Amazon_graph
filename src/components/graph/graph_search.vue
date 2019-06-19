@@ -1,6 +1,6 @@
 <template>
   <form class="search-box no-print">
-    <a href="#" class="secondary open-sidebar" title="Menu">
+    <a @click="handleShowMenu" href="#" class="secondary open-sidebar" title="Menu">
       <i class="material-icons">menu</i>
     </a>
     <div class="ak-typeahead">
@@ -24,43 +24,14 @@
         <i class="material-icons">search</i>
       </a>
       <div class="drop-click-container">
-        <span class="drop-click-name" title="Appliances">Appliances</span>
-        <select class="back-dropdown">
-          <option value="Books">Books</option>
-          <option value="KindleStore">Kindle Store</option>
-          <option value="UnboxVideo">Amazon Video</option>
-          <option value="VideoGames">Video Games</option>
+        <span class="drop-click-name" :title="category">{{categoryDisplay}}</span>
+        <select class="back-dropdown" v-model="category">
           <option value disabled></option>
-          <option value="All">All</option>
-          <option value="Appliances">Appliances</option>
-          <option value="MobileApps">Apps for Android</option>
-          <option value="ArtsAndCrafts">Arts &amp; Crafts</option>
-          <option value="Automotive">Automotive</option>
-          <option value="Baby">Baby</option>
-          <option value="Beauty">Beauty</option>
-          <option value="Apparel">Apparel</option>
-          <option value="Wireless">Cell Phones</option>
-          <option value="PCHardware">Computers</option>
-          <option value="Electronics">Electronics</option>
-          <option value="GourmetFood">Grocery</option>
-          <option value="HealthPersonalCare">Health</option>
-          <option value="HomeGarden">Home &amp; Kitchen</option>
-          <option value="Industrial">Industrial &amp; Scientific</option>
-          <option value="Jewelry">Jewelry</option>
-          <option value="Magazines">Magazine Subscriptions</option>
-          <option value="Video">Movies &amp; TV</option>
-          <option value="MP3Downloads">MP3 Downloads</option>
-          <option value="Music">Music</option>
-          <option value="MusicalInstruments">Musical Instruments</option>
-          <option value="OfficeProducts">Office Products</option>
-          <option value="OutdoorLiving">Patio, Lawn &amp; Garden</option>
-          <option value="PetSupplies">Pet Supplies</option>
-          <option value="Shoes">Shoes</option>
-          <option value="Software">Software</option>
-          <option value="SportingGoods">Sports &amp; Outdoors</option>
-          <option value="Tools">Tools</option>
-          <option value="Toys">Toys &amp; Games</option>
-          <option value="Watches">Watches</option>
+          <option
+            v-for="(option ,index) in sortedCategories"
+            :key="index"
+            :value="option.value"
+          >{{ option.text }}</option>
         </select>
       </div>
     </div>
@@ -72,15 +43,71 @@ export default {
   data() {
     return {
       searchQuery: "",
-      suggestions: []
+      suggestions: [],
+      category:'All',
+      categoryDisplay:'All',
+      categories: [
+        { value: "Watches", text: 'Watches' },
+        { value: "PetSupplies", text: "Pet Supplies" },
+        { value: "Toys", text: "Toys" },
+        { value: "Tools", text: "Tools" },
+        { value: "SportingGoods", text: "Sports & Outdoors" },
+        { value: "Software", text: "Software" },
+        { value: "Shoes", text: "Shoes" },
+        { value: "OutdoorLiving", text: "Patio, Lawn & Garden" },
+        { value: "OfficeProducts", text: "Office Products" },
+        { value: "MusicalInstruments", text: "Musical Instruments" },
+        { value: "Music", text: "Music" },
+        { value: "MP3Downloads", text: "MP3 Downloads" },
+        { value: "Video", text: "Movies & TV" },
+        { value: "Magazines", text: "Magazine Subscriptions" },
+        { value: "Jewelry", text: "Jewelry" },
+        { value: "Industrial", text: "Industrial & Scientific" },
+        { value: "HomeGarden", text: "Home & Kitchen" },
+        { value: "HealthPersonalCare", text: "Health" },
+        { value: "GourmetFood", text: "Grocery" },
+        { value: "Electronics", text: "Electronics" },
+        { value: "PCHardware", text: "Computers" },
+        { value: "Wireless", text: "Cell Phones" },
+        { value: "Apparel", text: "Apparel" },
+        { value: "Beauty", text: "Beauty" },
+        { value: "Baby", text: "Baby" },
+        { value: "Automotive", text: "Automotive" },
+        { value: "ArtsAndCrafts", text: "Arts & Crafts" },
+        { value: "MobileApps", text: "Apps for Android" },
+        { value: "Appliances", text: "Appliances" },
+        { value: "All", text: "All" },
+        { value: "VideoGames", text: "Video Games" },
+        { value: "UnboxVideo", text: "Amazon Video" },
+        { value: "KindleStore", text: "Kindle Store" },
+        { value: "Books", text: "Books" }
+      ]
     };
   },
   methods: {
-    searchSuggestion() {}
+    searchSuggestion() {},
+    handleShowMenu() {
+      return this.$emit("showMenu", true);
+    }
   },
   created() {
     this.debounceSuggestion = debounce(this.searchSuggestion, 500);
-  }
+  },
+  computed: {
+    sortedCategories() {
+      return this.categories.sort((a, b) => {
+        return a.text > b.text ? 1 : -1;
+      });
+    }
+  },
+  watch: {
+      category: function(newvalue) {
+      this.$emit('categoryChange', newvalue);
+      this.categoryDisplay = this.sortedCategories.find(category => {
+        return category.value === newvalue;
+      }).text;
+    }
+  },
 };
 </script>
 <style>

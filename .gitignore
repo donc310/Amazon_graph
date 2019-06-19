@@ -1,13 +1,7 @@
-/dist
+/public/js
 /node_modules
 .idea
-form.vue
-test.vue
-all.vue
-testMap.vue
-view.html
-/store
 .dev
 .vscode
-dist2
-src2
+widget.js
+
