@@ -1,6 +1,4 @@
-# page widget built using Vue custom element
-
-
+# widget built using Vue custom element
 
 ```html
 <html>
@@ -20,31 +18,43 @@
 </html>
 ```
 
+## About
+
+Amazon graph is a visual recommendation service that helps people find the right product from Amazon's catalog;
+be it a book, a movie or a video game -Amazon graph finds everything!
+
 ## How it works
 
-Widget is built with Vue Custom Element.
+Widget is built with vue.js , and uses vue custom element for embedding. Visual represtation of nodes is achieved using vivagraph.
 
-Uses bootsrap 4 for styling.
+the script uses a custom script tag widget-app
 
-The widget uses an API which hasnt't been configured for production 
+```
+<widget-app class="container"></widget-app>
+```
 
-The widget needs to be configured for production use.
+## Testing
 
-To build a live verison run 
-
-First install the node dependencies by running 
+To test the wiget you need to have nodejs installed , first run
 
 ```
 npm install
 ```
 
-Then run 
+this will install all the dependencies . to start a local server for the app run
 
 ```
 npm run start
 ```
-The app should be runing on port 3000
+
+to build the widget simply run
 
 ```
-http://localhost:3000
+npm run build
 ```
+
+this will generate a build in `public/js` which you can embed in your page using the custom tag
+
+###
+
+The Widget currently a json file to demonstarte the desired features , an Amazon affiliate account is required for full use of the app
