@@ -49,7 +49,7 @@
     "@amcharts/amcharts4": "^4.4.4",
     "@amcharts/amcharts4-geodata": "^4.1.4",
     "@johmun/vue-tags-input": "^2.0.1",
-    "aws-sdk": "^2.474.0",
+    "aws-sdk": "^2.814.0",
     "axios": "^0.18.0",
     "express": "^4.16.4",
     "babel-runtime": "^6.26.0",
